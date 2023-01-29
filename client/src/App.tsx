@@ -1,5 +1,12 @@
+import Ticker from '~/features/ticker/Ticker';
+import Layout from '~/components/Layout';
+
 function App() {
-  return <div className='App'></div>;
+  return (
+    <Layout>
+      <Ticker />
+    </Layout>
+  );
 }
 
 export default App;
