@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tickerReducer from '~/features/ticker/slice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     tickers: tickerReducer,
   },

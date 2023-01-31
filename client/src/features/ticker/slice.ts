@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export interface TicketResponse {
+export interface TickerResponse {
   ticker: string;
   exchange: string;
   price: number;
@@ -11,26 +11,32 @@ export interface TicketResponse {
   last_trade_time: string;
 }
 
-type TickerState = TicketResponse[];
+interface TickerState {
+  track: string[];
+  data: TickerResponse[];
+}
 
-const initialState: TickerState = [];
+const initialState: TickerState = {
+  track: [],
+  data: [],
+};
 
 export const tickerSlice = createSlice({
   name: 'ticker',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<TicketResponse>) => {
-      state = [...state, action.payload];
+    addTrackByName: (state, action: PayloadAction<string>) => {
+      state.track = [...state.track, action.payload];
     },
-    updateByName: (state, action: PayloadAction<TicketResponse>) => {
-      state = state.map((item) => (item.ticker === action.payload.ticker ? action.payload : item));
+    removeTrackByName: (state, action: PayloadAction<string>) => {
+      state.track = state.track.filter((item) => item !== action.payload);
     },
-    removeByName: (state, action: PayloadAction<string>) => {
-      state = state.filter((item) => item.ticker !== action.payload);
+    updateData: (state, action: PayloadAction<TickerResponse[]>) => {
+      state.data = action.payload;
     },
   },
 });
 
-export const { add, removeByName } = tickerSlice.actions;
+export const { addTrackByName, updateData, removeTrackByName } = tickerSlice.actions;
 
 export default tickerSlice.reducer;
