@@ -1,8 +1,8 @@
 import { Paper } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { TickerResponse, updateData } from '~/features/ticker/slice';
-import { useAppDispatch, useAppSelector } from '~/hooks';
-import socket from '~/socket';
+import { useAppDispatch, useAppSelector } from '~/app/hooks';
+import socket from '~/app/socket';
 import TickerCard from './TickerCard';
 
 socket.emit('start');

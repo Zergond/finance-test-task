@@ -12,8 +12,8 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { addTrackByName, removeTrackByName } from '~/features/ticker/slice';
-import { useAppDispatch, useAppSelector } from '~/hooks';
-import socket from '~/socket';
+import { useAppDispatch, useAppSelector } from '~/app/hooks';
+import socket from '~/app/socket';
 
 const tickersList = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA'];
 

@@ -1,7 +1,7 @@
 import { TickerResponse } from '~/features/ticker/slice';
-import { memo, useRef, forwardRef } from 'react';
+import { memo, useRef, forwardRef, MutableRefObject, Ref } from 'react';
 import { Box, Slide, Typography } from '@mui/material';
-import { usePrevious } from '~/hooks';
+import { usePrevious } from '~/app/hooks';
 
 export interface TickerCardProps extends TickerResponse {}
 
@@ -68,12 +68,14 @@ interface SlideTextProps {
   children: JSX.Element;
 }
 const SlideText = forwardRef<HTMLDivElement, SlideTextProps>(({ children }, ref) => {
+  const forwardedRef = ref as MutableRefObject<HTMLDivElement>;
+
   return (
     <>
-      {!ref?.current ? (
+      {!forwardedRef.current ? (
         <>{children}</>
       ) : (
-        <Slide container={ref.current} direction='up' in>
+        <Slide container={forwardedRef.current} direction='up' in>
           {children}
         </Slide>
       )}
